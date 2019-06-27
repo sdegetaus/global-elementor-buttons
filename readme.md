@@ -1,116 +1,221 @@
-=== Unified Elementor Buttons ===
-Contributors: tausworks
-Tags: elementor, buttons
-Requires at least: 4.6
-Tested up to: 5.2
-Stable tag: 1.0.0
-Requires PHP: 7.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+# Global Elementor Buttons
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+**Standardizes the Elementor Button with global classes that can be managed in a single place.**
 
-== Description ==
+Tired of having to update every single button style in your [Elementor](https://elementor.com/) website when the client asks for a change? Not too happy with Elementor's default button Styles or Sizes? Do you wish you were able to modify, add or remove them? Then this plugin is just what you need!
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+**Global Elementor Buttons** standardizes Elementor Buttons with global classes that can be managed in a single place with custom css (and it works with both Elementor and Elementor Pro!)
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+### Details ###
 
-A few notes about the sections above:
+This plugin creates a new Elementor Widget, called **Global Button** that contains a simplified UI, just with the necessary controls to keep all of your buttons global and flexible. However, in the need of a special button, you can still add specific ids or classes to them!
 
-*   "Contributors" is a comma separated list of wordpress.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+**Includes a handful of useful hooks for full flexibility:**
+* Set your own custom Style and Size classes (for example, btn-*primary*).
+* Add / remove existent Style and Size classes.
+* Change or remove the Style and Size prefix (for example, *btn-*primary).
+* Edit the default Style and Size class.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+For demonstration purposes, this plugin adds a minified version of the [Bootstrap Buttons](https://getbootstrap.com/docs/4.0/components/buttons/) stylesheet. Global Elementor Buttons allows you to remove this stylesheet, for performance and complexity reasons (see **Customization**).
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+## Installation
 
-== Installation ==
+1. Make sure you have [Elementor or Elementor Pro](https://elementor.com) installed and activated.
+2. Install the plugin through the WordPress plugins screen directly or upload the plugin to the plugins directory.
+3. Activate the plugin through the 'Plugins' screen in WordPress.
+4. Go into your Elementor Editor, find the widget **Global Button** under the *Basic* section tab and add it to your website.
+5. Within the widget you will find all the necessary fields.
 
-This section describes how to install the plugin and get it working.
+## Customization
+This plugin implements hooks for simple, yet useful editing of the classes' names, prefixes and defaults.
 
-e.g.
+#### Modifying the Style & Size Classes
+This plugin offers custom hook filters that allow the modification of the Style and Size classes - `tmx_set_button_styles` and `tmx_set_button_sizes` respectively.
+The default classes for the Style are:
+```php
+$styles = [
+    'primary' => 'Primary',
+    'secondary' => 'Secondary',
+    'success' => 'Success',
+    'danger' => 'Danger',
+    'warning' => 'Warning',
+    'info' => 'Info',
+    'light' => 'Light',
+    'dark' => 'Dark',
+    'link' => 'Link',
+];
+```
+And for the sizes:
+```php
+$sizes = [
+	'xs' => 'Extra Small',
+	'sm' => 'Small',
+	'md' => 'Medium',
+	'lg' => 'Large',
+	'xl' => 'Extra Large',
+];
+```
 
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-1. Use the Settings->Plugin Name screen to configure the plugin
-1. (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
+---
+
+If you want to use your own classes, add or remove the existing ones, you can do so by modifying and adding the following code snippets in your `functions.php` file:
+
+##### Replace the Existing Classes:
+This snippet replaces the plugin's default classes entirely.
+
+**Styles:**
+
+```php
+function replace_button_styles() {
+    return [
+        'new-class' => 'New Class',
+        'another-class' => 'Another Class',
+    ];
+}
+add_filter( 'tmx_set_button_styles', 'replace_button_styles', 10 );
+```
+
+**Sizes:**
+
+```php
+function replace_button_sizes() {
+    return [
+        'new-size' => 'New Size',
+        'another-size' => 'Another Size',
+    ];
+}
+add_filter( 'tmx_set_button_sizes', 'replace_button_sizes', 10 );
+```
+
+---
 
 
-== Frequently Asked Questions ==
+##### Add to the Existing Classes:
+Note that newly added styles will be at the end of the backend's select box!
 
-= A question that someone might have =
+**Styles:**
 
-An answer to that question.
+```php
+function add_button_styles( $styles ) {
+    return array_merge( $styles, [
+        'new-class' => 'New Class',
+        'another-class' => 'Another Class',
+    ] );
+}
+add_filter( 'tmx_set_button_styles', 'add_button_styles', 10, 1 );
+```
 
-= What about foo bar? =
+**Sizes:**
 
-Answer to foo bar dilemma.
+```php
+function add_button_sizes( $sizes ) {
+    return array_merge( $sizes, [
+        'new-size' => 'New Size',
+        'another-size' => 'Another Size',
+    ] );
+}
+add_filter( 'tmx_set_button_sizes', 'add_button_sizes', 10, 1 );
+```
 
-== Screenshots ==
+---
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+##### Remove Items from the Existing Classes:
+You can delete specific elements by *unsetting* them from the array via their key.
 
-== Changelog ==
+**Styles:**
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+```php
+function remove_button_styles( $styles ) {
+    unset( $styles['primary'] );
+    unset( $styles['secondary'] );
+    return $styles;
+}
+add_filter( 'tmx_set_button_styles', 'remove_button_styles', 10, 1 );
+```
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+**Sizes:**
 
-== Upgrade Notice ==
+```php
+function remove_button_styles( $sizes ) {
+    unset( $sizes['lg'] );
+    unset( $sizes['sm'] );
+    return $sizes;
+}
+add_filter( 'tmx_set_button_sizes', 'remove_button_styles', 10, 1 );
+```
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+---
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
 
-== Arbitrary section ==
+#### Modifying the Prefix Class
+By default the button styles are prefixed with `btn btn-` (just like Bootstrap's style) - the button sizes with `elementor-size-` (following Elementor's styles). You can change them with the `tmx_set_button_style_prefix` filter for the styles, and with `tmx_set_button_size_prefix` for the sizes.
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+If you wish to remove the prefix entirely, you can just return nothing, like `return '';`
 
-== A brief Markdown Example ==
+**Styles Prefix:**
 
-Ordered list:
+```php
+function change_button_style_prefix( ) {
+    return 'new-prefix-';
+}
+add_filter( 'tmx_set_button_style_prefix', 'change_button_style_prefix', 10 );
+```
 
-1. Some feature
-1. Another feature
-1. Something else about the plugin
+**Sizes Prefix:**
 
-Unordered list:
+```php
+function change_button_size_prefix( ) {
+    return 'new-prefix-';
+}
+add_filter( 'tmx_set_button_size_prefix', 'change_button_size_prefix', 10 );
+```
 
-* something
-* something else
-* third thing
+---
 
-Here's a link to [WordPress](https://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
+#### Changing the Default Selected Class
+The default class for the button style is `primary` and for the size is `sm`. The filters `tmx_set_button_style_default` and `tmx_set_button_size_default` allow us to change the defaults of the style and size respectively.
 
-[markdown syntax]: https://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+**Note 1:** your new default must be in the array! If it is not in the array, all your newly created buttons will appear without any styling (naturally, this depends on you css code).
 
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
+**Note 2:** remember that here you only need the key, not the prefix. For example, `return 'info';` and not `return 'btn btn-info';`
 
-`<?php code(); // goes in backticks ?>`
+**Style Default:**
+
+```php
+function change_button_style_default( ) {
+    return 'info';
+}
+add_filter( 'tmx_set_button_style_default', 'change_button_style_default', 10 );
+```
+
+**Size Default:**
+
+```php
+function change_button_size_default( ) {
+    return 'lg';
+}
+add_filter( 'tmx_set_button_size_default', 'change_button_size_default', 10 );
+```
+
+---
+
+#### Remove the Default Stylesheet
+As mentioned before, this plugin adds a minified stylesheet to demonstrate its functionality quickly without having too much setup required. We care about project performance and complexity (nobody wants unknown stylesheets getting loaded from a bunch of different plugins).
+
+You can disable the stylesheet from being enqueued with the filter `tmx_should_enqueue_default_stylesheet`. Its default naturally is set to `true`. The sample code is here below:
+
+```php
+function should_enqueue_default_styles() {
+    return false;
+}
+add_filter( 'tmx_should_enqueue_default_stylesheet', 'should_enqueue_default_styles', 10 );
+```
+
+
+## Changelog
+* 1.0.0 - Initial Release
+
+## License
+This plugin is developed and maintained by [Santiago Degetau](tmx_set_button_size_prefix) (*TausWorks*).
+
+License: [GPL V2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
