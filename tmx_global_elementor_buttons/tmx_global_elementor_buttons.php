@@ -5,7 +5,7 @@
  Description: Standarizes the Elementor buttons with global classes that can be managed in a single place with custom css.
  Version: 1.0.0
  Author: Santiago Degetau
- Author URI: http://www.taus.mx
+ Author URI: https://github.com/sdegetaus
  License: GPL2
  text-domain: tmx-global-elementor-buttons
 */
