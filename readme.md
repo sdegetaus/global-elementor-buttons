@@ -66,6 +66,7 @@ This snippet replaces the plugin's default classes entirely.
 **Styles:**
 
 ```php
+// functions.php
 function replace_button_styles() {
     return [
         'new-class' => 'New Class',
@@ -78,6 +79,7 @@ add_filter( 'tmx_set_button_styles', 'replace_button_styles', 10 );
 **Sizes:**
 
 ```php
+// functions.php
 function replace_button_sizes() {
     return [
         'new-size' => 'New Size',
@@ -96,6 +98,7 @@ Note that newly added styles will be at the end of the backend's select box!
 **Styles:**
 
 ```php
+// functions.php
 function add_button_styles( $styles ) {
     return array_merge( $styles, [
         'new-class' => 'New Class',
@@ -108,6 +111,7 @@ add_filter( 'tmx_set_button_styles', 'add_button_styles', 10, 1 );
 **Sizes:**
 
 ```php
+// functions.php
 function add_button_sizes( $sizes ) {
     return array_merge( $sizes, [
         'new-size' => 'New Size',
@@ -125,6 +129,7 @@ You can delete specific elements by *unsetting* them from the array via their ke
 **Styles:**
 
 ```php
+// functions.php
 function remove_button_styles( $styles ) {
     unset( $styles['primary'] );
     unset( $styles['secondary'] );
@@ -136,6 +141,7 @@ add_filter( 'tmx_set_button_styles', 'remove_button_styles', 10, 1 );
 **Sizes:**
 
 ```php
+// functions.php
 function remove_button_styles( $sizes ) {
     unset( $sizes['lg'] );
     unset( $sizes['sm'] );
@@ -155,6 +161,7 @@ If you wish to remove the prefix entirely, you can just return nothing, like `re
 **Styles Prefix:**
 
 ```php
+// functions.php
 function change_button_style_prefix( ) {
     return 'new-prefix-';
 }
@@ -164,6 +171,7 @@ add_filter( 'tmx_set_button_style_prefix', 'change_button_style_prefix', 10 );
 **Sizes Prefix:**
 
 ```php
+// functions.php
 function change_button_size_prefix( ) {
     return 'new-prefix-';
 }
@@ -182,6 +190,7 @@ The default class for the button style is `primary` and for the size is `sm`. Th
 **Style Default:**
 
 ```php
+// functions.php
 function change_button_style_default( ) {
     return 'info';
 }
@@ -191,6 +200,7 @@ add_filter( 'tmx_set_button_style_default', 'change_button_style_default', 10 );
 **Size Default:**
 
 ```php
+// functions.php
 function change_button_size_default( ) {
     return 'lg';
 }
@@ -205,6 +215,7 @@ As mentioned before, this plugin adds a minified stylesheet to demonstrate its f
 You can disable the stylesheet from being enqueued with the filter `tmx_should_enqueue_default_stylesheet`. Its default naturally is set to `true`. The sample code is here below:
 
 ```php
+// functions.php
 function should_enqueue_default_styles() {
     return false;
 }
