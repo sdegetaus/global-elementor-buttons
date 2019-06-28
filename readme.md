@@ -13,9 +13,9 @@ Tired of having to update every single button style in your [Elementor](https://
 This plugin creates a new Elementor Widget, called **Global Button** that contains a simplified UI, just with the necessary controls to keep all of your buttons global and flexible. However, in the need of a special button, you can still add specific ids or classes to them!
 
 **Includes a handful of useful hooks for full flexibility:**
-* Set your own custom Style and Size classes (for example, btn-*primary*).
+* Set your own custom Style and Size classes (for example, btn-**primary**).
 * Add / remove existent Style and Size classes.
-* Change or remove the Style and Size prefix (for example, *btn-*primary).
+* Change or remove the Style and Size prefix (for example, <b>btn-</b>primary).
 * Edit the default Style and Size class.
 
 For demonstration purposes, this plugin adds a minified version of the [Bootstrap Buttons](https://getbootstrap.com/docs/4.0/components/buttons/) stylesheet. Global Elementor Buttons allows you to remove this stylesheet, for performance and complexity reasons (see **Customization**).
@@ -224,7 +224,8 @@ add_filter( 'tmx_should_enqueue_default_stylesheet', 'should_enqueue_default_sty
 
 
 ## Changelog
-* 1.0.0 - Initial Release
+* 1.1.0 - Added Button ID to the Global Button Widget.
+* 1.0.0 - Initial Build.
 
 ## License
 This plugin is developed and maintained by [Santiago Degetau](tmx_set_button_size_prefix) (*TausWorks*).

@@ -3,7 +3,7 @@
  Plugin Name: Global Elementor Buttons
  Plugin URI: https://github.com/sdegetaus/Global-Elementor-Buttons
  Description: Standarizes the Elementor buttons with global classes that can be managed in a single place with custom css.
- Version: 1.0.0
+ Version: 1.1.0
  Author: Santiago Degetau
  Author URI: https://github.com/sdegetaus
  License: GPL2

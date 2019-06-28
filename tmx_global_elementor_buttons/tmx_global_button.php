@@ -12,19 +12,19 @@ class TMX_Global_Button extends Widget_Button {
 
 	// BUTTON STYLE - CLASSES
 	public static function tmx_get_button_style() {
-		$classes = [
-			'primary' => __('Primary', 'tmx-global-elementor-buttons'),
-			'secondary' => __('Secondary', 'tmx-global-elementor-buttons'),
-			'success' => __('Success', 'tmx-global-elementor-buttons'),
-			'danger' => __('Danger', 'tmx-global-elementor-buttons'),
-			'warning' => __('Warning', 'tmx-global-elementor-buttons'),
-			'info' => __('Info', 'tmx-global-elementor-buttons'),
-			'light' => __('Light', 'tmx-global-elementor-buttons'),
-			'dark' => __('Dark', 'tmx-global-elementor-buttons'),
-			'link' => __('Link', 'tmx-global-elementor-buttons'),
+		$styles = [
+			'primary' => 'Primary',
+			'secondary' => 'Secondary',
+			'success' => 'Success',
+			'danger' => 'Danger',
+			'warning' => 'Warning',
+			'info' => 'Info',
+			'light' => 'Light',
+			'dark' => 'Dark',
+			'link' => 'Link',
 		];
-		$classes = apply_filters( 'tmx_set_button_styles', $classes );
-		return $classes;
+		$styles = apply_filters( 'tmx_set_button_styles', $styles );
+		return $styles;
 	}
 
 	// BUTTON STYLE - PREFIX
@@ -44,11 +44,11 @@ class TMX_Global_Button extends Widget_Button {
 	// BUTTON SIZE - CLASSES
 	public static function tmx_get_button_size() {
 		$sizes = [
-			'xs' => __( 'Extra Small', 'elementor' ),
-			'sm' => __( 'Small', 'elementor' ),
-			'md' => __( 'Medium', 'elementor' ),
-			'lg' => __( 'Large', 'elementor' ),
-			'xl' => __( 'Extra Large', 'elementor' ),
+			'xs' => 'Extra Small',
+			'sm' => 'Small',
+			'md' => 'Medium',
+			'lg' => 'Large',
+			'xl' => 'Extra Large',
 		];
 		$sizes = apply_filters( 'tmx_set_button_sizes', $sizes );
 		return $sizes;
@@ -210,6 +210,23 @@ class TMX_Global_Button extends Widget_Button {
 			]
 		);
 
+		$this->add_control(
+			'button_css_id',
+			[
+				'label' => __( 'Button ID', 'elementor' ),
+				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+				'default' => '',
+				'title' => __( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				'label_block' => false,
+				'description' => __( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows <code>A-z 0-9</code> & underscore chars without spaces.', 'elementor' ),
+				'separator' => 'before',
+
+			]
+		);
+
 		// used to get the button _STYLE_ prefix for js rendering (elementor backend)
 		$this->add_control(
 			'button_style_prefix',
@@ -257,6 +274,11 @@ class TMX_Global_Button extends Widget_Button {
 		}
 		
 		$this->add_render_attribute( 'button', 'class', 'elementor-button' );
+		$this->add_render_attribute( 'button', 'role', 'button' );
+
+		if ( ! empty( $settings['button_css_id'] ) ) {
+			$this->add_render_attribute( 'button', 'id', $settings['button_css_id'] );
+		}
 
 		if ( ! empty( $settings['size'] ) ) {
 			// altered to include a custom size prefix class
@@ -283,7 +305,7 @@ class TMX_Global_Button extends Widget_Button {
 		#>
 
 		<div class="elementor-button-wrapper">
-			<a class="{{ settings.button_style_prefix }}{{ settings.button_style }} elementor-button {{ settings.button_size_prefix }}{{ settings.size }} elementor-animation-{{ settings.hover_animation }}" href="{{ settings.link.url }}">
+			<a id="{{ settings.button_css_id }}" class="{{ settings.button_style_prefix }}{{ settings.button_style }} elementor-button {{ settings.button_size_prefix }}{{ settings.size }} elementor-animation-{{ settings.hover_animation }}" href="{{ settings.link.url }}" role="button">
 				<span class="elementor-button-content-wrapper">
 					<# if ( settings.icon ) { #>
 					<span class="elementor-button-icon elementor-align-icon-{{ settings.icon_align }}">
