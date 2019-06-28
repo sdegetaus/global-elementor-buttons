@@ -1,3 +1,7 @@
+[screenshot2]: https://github.com/sdegetaus/global-elementor-buttons/blob/master/plugin-assets/screenshot-2.jpg "Logo Title Text 1"
+
+![alt text][screenshot2]
+
 # Global Elementor Buttons
 
 **Standardizes the Elementor Button with global classes that can be managed in a single place.**
@@ -7,6 +11,8 @@ Tired of having to update every single button style in your [Elementor](https://
 **Global Elementor Buttons** standardizes Elementor Buttons with global classes that can be managed in a single place with custom css (and it works with both Elementor and Elementor Pro!)
 
 [Get it now on WordPress!](https://wordpress.org/plugins/global-elementor-buttons/)
+
+---
 
 ### Details
 
@@ -222,6 +228,7 @@ function should_enqueue_default_styles() {
 add_filter( 'tmx_should_enqueue_default_stylesheet', 'should_enqueue_default_styles', 10 );
 ```
 
+---
 
 ## Changelog
 * 1.1.0 - Added Button ID to the Global Button Widget.
