@@ -6,6 +6,8 @@ Tired of having to update every single button style in your [Elementor](https://
 
 **Global Elementor Buttons** standardizes Elementor Buttons with global classes that can be managed in a single place with custom css (and it works with both Elementor and Elementor Pro!)
 
+[Get it now on WordPress!](https://wordpress.org/plugins/global-elementor-buttons/)
+
 ### Details
 
 This plugin creates a new Elementor Widget, called **Global Button** that contains a simplified UI, just with the necessary controls to keep all of your buttons global and flexible. However, in the need of a special button, you can still add specific ids or classes to them!
