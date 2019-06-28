@@ -23,9 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class TMX_Global_Buttons {
 
-	private const PLUGIN_NAME = 'Global Elementor Buttons';
-	private const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
-	private const MINIMUM_PHP_VERSION = '7.0';
+	const PLUGIN_NAME = 'Global Elementor Buttons';
+	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
+	const MINIMUM_PHP_VERSION = '7.0';
 
 	public function __construct() {
 		// load the localization text domain
