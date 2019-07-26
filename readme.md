@@ -235,6 +235,6 @@ add_filter( 'tmx_should_enqueue_default_stylesheet', 'should_enqueue_default_sty
 * 1.0.0 - Initial Build.
 
 ## License
-This plugin is developed and maintained by [Santiago Degetau](https://www.santiagodegetau.com.mx) (*TausMX*).
+This plugin is developed and maintained by [Santiago Degetau](https://www.santiagodegetau.com) (*TausMX*).
 
 License: [GPL V2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
