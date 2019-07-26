@@ -1,4 +1,4 @@
-[screenshot2]: https://github.com/sdegetaus/global-elementor-buttons/blob/master/plugin-assets/screenshot-2.jpg "Logo Title Text 1"
+[screenshot2]: https://github.com/sdegetaus/global-elementor-buttons/blob/master/plugin-assets/screenshot-2.jpg "Global Elementor Buttons"
 
 ![alt text][screenshot2]
 
@@ -235,6 +235,6 @@ add_filter( 'tmx_should_enqueue_default_stylesheet', 'should_enqueue_default_sty
 * 1.0.0 - Initial Build.
 
 ## License
-This plugin is developed and maintained by [Santiago Degetau](tmx_set_button_size_prefix) (*TausWorks*).
+This plugin is developed and maintained by [Santiago Degetau](https://www.santiagodegetau.com.mx) (*TausMX*).
 
 License: [GPL V2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
